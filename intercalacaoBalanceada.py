@@ -78,31 +78,25 @@ def DistribuirEntreAsFitasDeEntrada(fita1, fita2, fita3, vetorEntrada):
     fita3.close()
 
 
-def Intercalacao(bolaDaVez, a, numRegistros):
+def Intercalacao(fitaEntrada, fitaSaida, numRegistros):
     n = numRegistros
-    # Numero de registros no primeiro bloco
+    # Num de registros no bloco
     m = 3
-    # Numero de fitas
+    # Num de fitas
     f = 6
 
-    # Comeco das passadas
     passada = 0
 
-    # Enquanto as passadas nao alcancarem o calculo, faca:
+    # Passadas necessarias no loop:
     while passada <= math.ceil(math.log(n / m) / math.log(f)):
-        '''
-                ## PARTE 2
-
-        '''
-
         # Abre os arquivos para leitura
-        arq1 = open(bolaDaVez[0], 'r')
-        arq2 = open(bolaDaVez[1], 'r')
-        arq3 = open(bolaDaVez[2], 'r')
-        # Abre e fecha as 3 primeiras fitas para zera-las
-        arq21 = open(a[0], 'w')
-        arq22 = open(a[1], 'w')
-        arq23 = open(a[2], 'w')
+        arq1 = open(fitaEntrada[0], 'r')
+        arq2 = open(fitaEntrada[1], 'r')
+        arq3 = open(fitaEntrada[2], 'r')
+        # Abre e fecha as 3 primeiras fitas de saida para inicializar
+        arq21 = open(fitaSaida[0], 'w')
+        arq22 = open(fitaSaida[1], 'w')
+        arq23 = open(fitaSaida[2], 'w')
         arq21.close()
         arq22.close()
         arq23.close()
@@ -122,7 +116,7 @@ def Intercalacao(bolaDaVez, a, numRegistros):
         # Setando o indice para 0
         i = 0
         while arq1Fechado != 2 and arq2Fechado != 2 and arq3Fechado != 2:
-            arq21 = open(a[i], 'a')
+            arq21 = open(fitaSaida[i], 'a')
 
             # Le a linha do primeiro arquivo
             linhaDo1 = arq1.readline()
@@ -234,20 +228,14 @@ def Intercalacao(bolaDaVez, a, numRegistros):
             else:
                 i += 1
 
-        print("CHEGOU NO FINAL DO 2")
-
-        '''
-            ## PARTE 3
-
-        '''
         # Abre os arquivos para leitura
-        arq21 = open(a[0], 'r')
-        arq22 = open(a[1], 'r')
-        arq23 = open(a[2], 'r')
+        arq21 = open(fitaSaida[0], 'r')
+        arq22 = open(fitaSaida[1], 'r')
+        arq23 = open(fitaSaida[2], 'r')
         # Abre e fecha as 3 primeiras fitas para zera-las
-        arq11 = open(bolaDaVez[0], 'w')
-        arq12 = open(bolaDaVez[1], 'w')
-        arq13 = open(bolaDaVez[2], 'w')
+        arq11 = open(fitaEntrada[0], 'w')
+        arq12 = open(fitaEntrada[1], 'w')
+        arq13 = open(fitaEntrada[2], 'w')
 
         arq11.close()
         arq12.close()
@@ -261,7 +249,7 @@ def Intercalacao(bolaDaVez, a, numRegistros):
 
         # Mesma logica da parte 2
         while arq1Fechado != 2 and arq2Fechado != 2 and arq3Fechado != 2:
-            arq = open(bolaDaVez[i], 'a')
+            arq = open(fitaEntrada[i], 'a')
 
             linhaDo1 = arq21.readline()
             if linhaDo1 != '':
@@ -308,7 +296,6 @@ def Intercalacao(bolaDaVez, a, numRegistros):
                     linhaDo2 = str(linhaDo2) + '\n'
                     arq.writelines(linhaDo2)
                     linhaDo2 = arq22.readline()
-                    cont = 0
                     if linhaDo2 == '-\n':
                         linhaDo2 = 999
                         arq2Fechado = 1
@@ -339,8 +326,6 @@ def Intercalacao(bolaDaVez, a, numRegistros):
             else:
                 i += 1
         ##
-
-        print("CHEGOU NO FINAL DO 3\n")
 
         passada += 1  # Incrementa +1  na passada
 
