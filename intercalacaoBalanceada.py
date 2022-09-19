@@ -2,7 +2,7 @@ import math
 import mergeSort
 
 
-def intercalacaoBalanceada(nomeDoArquivo):
+def IntercalacaoBalanceada(nomeDoArquivo):
     arquivoEntrada = open(nomeDoArquivo + '.txt', 'r')
     vetorEntrada = ArmazenarValoresDeEntradaNoVetor(arquivoEntrada)
     arquivoEntrada.close()
@@ -90,24 +90,24 @@ def Intercalacao(fitaEntrada, fitaSaida, numRegistros):
     # Passadas necessarias no loop:
     while passada <= math.ceil(math.log(n / m) / math.log(f)):
         # Abre os arquivos para leitura
-        arq1 = open(fitaEntrada[0], 'r')
-        arq2 = open(fitaEntrada[1], 'r')
-        arq3 = open(fitaEntrada[2], 'r')
+        fita1 = open(fitaEntrada[0], 'r')
+        fita2 = open(fitaEntrada[1], 'r')
+        fita3 = open(fitaEntrada[2], 'r')
         # Abre e fecha as 3 primeiras fitas de saida para inicializar
-        arq21 = open(fitaSaida[0], 'w')
-        arq22 = open(fitaSaida[1], 'w')
-        arq23 = open(fitaSaida[2], 'w')
-        arq21.close()
-        arq22.close()
-        arq23.close()
+        fita4 = open(fitaSaida[0], 'w')
+        fita5 = open(fitaSaida[1], 'w')
+        fita6 = open(fitaSaida[2], 'w')
+        fita4.close()
+        fita5.close()
+        fita6.close()
 
-        arq1Fechado = 0
-        arq2Fechado = 0
-        arq3Fechado = 0
+        fita1Fechado = 0
+        fita2Fechado = 0
+        fita3Fechado = 0
 
-        # Se arqFechado = 0 - A variavel percorre o arquivo
-        # Se arqFechado = 1 - A variavel encontrou um separador de blocos, entao ela tera que esperar as outras chegarem tambem para voltarem a ser 0
-        # Se arqFechado = 2 - A variavel chegou no final do arquivo
+        # arqFechado = 0 - A variavel percorre o arquivo
+        # arqFechado = 1 - A variavel encontrou um separador de blocos, entao ela tera que esperar as outras chegarem tambem para voltarem a ser 0
+        # arqFechado = 2 - A variavel chegou no final do arquivo
 
         # LinhaDo1 - Variavel que percorre o arquivo 1 dos 3 a ser comparados
         # LinhaDo2 - Variavel que percorre o arquivo 2 dos 3 a ser comparados
@@ -115,210 +115,210 @@ def Intercalacao(fitaEntrada, fitaSaida, numRegistros):
 
         # Setando o indice para 0
         i = 0
-        while arq1Fechado != 2 and arq2Fechado != 2 and arq3Fechado != 2:
-            arq21 = open(fitaSaida[i], 'a')
+        while fita1Fechado != 2 and fita2Fechado != 2 and fita3Fechado != 2:
+            fita4 = open(fitaSaida[i], 'a')
 
             # Le a linha do primeiro arquivo
-            linhaDo1 = arq1.readline()
+            linhaDo1 = fita1.readline()
             # Tratamento caso a linha seja igual a um separador de blocos
             if linhaDo1 == '-\n':
-                linhaDo1 = arq1.readline()
+                linhaDo1 = fita1.readline()
             # Se for igual a '' quer dizer que chegou no final do arquivo
             if linhaDo1 != '':
                 linhaDo1 = int(linhaDo1)
-                arq1Fechado = 0
+                fita1Fechado = 0
             else:
-                arq1.close()
-                arq1Fechado = 2
+                fita1.close()
+                fita1Fechado = 2
                 linhaDo1 = 9000  # LinhaDo1 recebe um valor muito alto para que nao seja comparado menor que nenhuma das outras linhas
             #####
             # Le a linha do segundo arquivo
-            linhaDo2 = arq2.readline()
+            linhaDo2 = fita2.readline()
             # Tratamento caso a linha seja igual a um separador de blocos
             if linhaDo2 == '-\n':
-                linhaDo2 = arq2.readline()
+                linhaDo2 = fita2.readline()
             # Se for igual a '' quer dizer que chegou no final do arquivo
             if linhaDo2 != '':
                 linhaDo2 = int(linhaDo2)
-                arq2Fechado = 0
+                fita2Fechado = 0
             else:
-                arq2.close()
-                arq2Fechado = 2
+                fita2.close()
+                fita2Fechado = 2
                 linhaDo2 = 9000  # LinhaDo2 recebe um valor muito alto para que nao seja comparado menor que nenhuma das outras linhas
             ####
             # Le a linha do terceiro arquivo
-            linhaDo3 = arq3.readline()
+            linhaDo3 = fita3.readline()
             # Tratamento caso a linha seja igual a um separador de blocos
             if linhaDo3 == '-\n':
-                linhaDo3 = arq3.readline()
+                linhaDo3 = fita3.readline()
             # Se for igual a '' quer dizer que chegou no final do arquivo
             if linhaDo3 != '':
                 linhaDo3 = int(linhaDo3)
-                arq3Fechado = 0
+                fita3Fechado = 0
             else:
-                arq3.close()
-                arq3Fechado = 2
+                fita3.close()
+                fita3Fechado = 2
                 linhaDo3 = 9000  # LinhaDo3 recebe um valor muito alto para que nao seja comparado menor que nenhuma das outras linhas
 
-            while arq1Fechado == 0 or arq2Fechado == 0 or arq3Fechado == 0:
+            while fita1Fechado == 0 or fita2Fechado == 0 or fita3Fechado == 0:
                 # Se linhaDo1 for menor que linhaDo2 e linhaDo3:
-                if arq1Fechado == 0 and linhaDo1 < linhaDo2 and linhaDo1 < linhaDo3:
+                if fita1Fechado == 0 and linhaDo1 < linhaDo2 and linhaDo1 < linhaDo3:
                     # Converte para string e pula uma linha
                     linhaDo1 = str(linhaDo1) + '\n'
                     # Escreve a linha no final do arquivo
-                    arq21.writelines(linhaDo1)
-                    linhaDo1 = arq1.readline()                          # Le outra linha
+                    fita4.writelines(linhaDo1)
+                    linhaDo1 = fita1.readline()                          # Le outra linha
                     if linhaDo1 == '':                                  # Se chegar no final do arquivo, nao abri-lo
-                        arq1.close()
-                        arq1Fechado = 2
+                        fita1.close()
+                        fita1Fechado = 2
                         linhaDo1 = 999
                     if linhaDo1 == "-\n":                               # Se chegar no final do bloco
                         # ArqFechado = 1, para nao entrar mais nesse bloco
-                        arq1Fechado = 1
+                        fita1Fechado = 1
                         # Atribui um valor alto a linha, para continuar as comparacoes
                         linhaDo1 = 999
                     else:
                         # Se nao, converta para inteiro, para continuar as comparacoes
                         linhaDo1 = int(linhaDo1)
                 # Se linhaDo2 for menor que linhaDo1 e linhaDo3:
-                if arq2Fechado == 0 and linhaDo2 < linhaDo1 and linhaDo2 < linhaDo3:
+                if fita2Fechado == 0 and linhaDo2 < linhaDo1 and linhaDo2 < linhaDo3:
                     # Converte para string e pula uma linha
                     linhaDo2 = str(linhaDo2) + '\n'
                     # Escreve a linha no final do arquivo
-                    arq21.writelines(linhaDo2)
-                    linhaDo2 = arq2.readline()                          # Le outra linha
+                    fita4.writelines(linhaDo2)
+                    linhaDo2 = fita2.readline()                          # Le outra linha
                     if linhaDo2 == '':                                  # Se chegar no final do arquivo, nao abri-lo
-                        arq2.close()
-                        arq2Fechado = 2
+                        fita2.close()
+                        fita2Fechado = 2
                         linhaDo2 = 999
                     if linhaDo2 == '-\n':                               # Se chegar no final do bloco
                         # Atribui um valor alto a linha, para continuar as comparacoes
                         linhaDo2 = 999
                         # ArqFechado = 1, para nao entrar mais nesse bloco
-                        arq2Fechado = 1
+                        fita2Fechado = 1
                     else:
                         # Se nao, converta para inteiro, para continuar as comparacoes
                         linhaDo2 = int(linhaDo2)
                 # Se linhaDo3 for menor que linhaDo1 e linhaDo2:
-                if arq3Fechado == 0 and linhaDo3 < linhaDo1 and linhaDo3 < linhaDo2:
+                if fita3Fechado == 0 and linhaDo3 < linhaDo1 and linhaDo3 < linhaDo2:
                     # Converte para string e pula uma linha
                     linhaDo3 = str(linhaDo3) + '\n'
                     # Escreve a linha no final do arquivo
-                    arq21.writelines(linhaDo3)
-                    linhaDo3 = arq3.readline()                          # Le outra linha
+                    fita4.writelines(linhaDo3)
+                    linhaDo3 = fita3.readline()                          # Le outra linha
                     if linhaDo3 == '':                                  # Se chegar no final do arquivo, nao abri-lo
-                        arq3.close()
-                        arq3Fechado = 2
+                        fita3.close()
+                        fita3Fechado = 2
                         linhaDo3 = 999
                     if linhaDo3 == "-\n":                               # Se chegar no final do bloco
                         # Atribui um valor alto a linha, para continuar as comparacoes
                         linhaDo3 = 999
                         # ArqFechado = 1, para nao entrar mais nesse bloco
-                        arq3Fechado = 1
+                        fita3Fechado = 1
                     else:
                         # Se nao, converta para inteiro, para continuar as comparacoes
                         linhaDo3 = int(linhaDo3)
             # Se nao estiver chegado no final dos 3 arquivos:
-            if arq1Fechado != 2 and arq2Fechado != 2 and arq3Fechado != 2:
+            if fita1Fechado != 2 and fita2Fechado != 2 and fita3Fechado != 2:
                 # Escreva o separador do bloco
-                arq21.writelines('-\n')
-                arq21.close()
+                fita4.writelines('-\n')
+                fita4.close()
             if i == 2:                                                  # Mudanca de indice para mudar de arquivo destino
                 i = 0
             else:
                 i += 1
 
         # Abre os arquivos para leitura
-        arq21 = open(fitaSaida[0], 'r')
-        arq22 = open(fitaSaida[1], 'r')
-        arq23 = open(fitaSaida[2], 'r')
+        fita4 = open(fitaSaida[0], 'r')
+        fita5 = open(fitaSaida[1], 'r')
+        fita6 = open(fitaSaida[2], 'r')
         # Abre e fecha as 3 primeiras fitas para zera-las
-        arq11 = open(fitaEntrada[0], 'w')
-        arq12 = open(fitaEntrada[1], 'w')
-        arq13 = open(fitaEntrada[2], 'w')
+        fita11 = open(fitaEntrada[0], 'w')
+        fita12 = open(fitaEntrada[1], 'w')
+        fita13 = open(fitaEntrada[2], 'w')
 
-        arq11.close()
-        arq12.close()
-        arq13.close()
+        fita11.close()
+        fita12.close()
+        fita13.close()
 
-        arq1Fechado = 0
-        arq2Fechado = 0
-        arq3Fechado = 0
+        fita1Fechado = 0
+        fita2Fechado = 0
+        fita3Fechado = 0
         # Setando o indice para 0
         i = 0
 
         # Mesma logica da parte 2
-        while arq1Fechado != 2 and arq2Fechado != 2 and arq3Fechado != 2:
+        while fita1Fechado != 2 and fita2Fechado != 2 and fita3Fechado != 2:
             arq = open(fitaEntrada[i], 'a')
 
-            linhaDo1 = arq21.readline()
+            linhaDo1 = fita4.readline()
             if linhaDo1 != '':
                 linhaDo1 = int(linhaDo1)
-                arq1Fechado = 0
+                fita1Fechado = 0
             else:
-                arq1.close()
-                arq1Fechado = 2
+                fita1.close()
+                fita1Fechado = 2
                 linhaDo1 = 9000
             #####
-            linhaDo2 = arq22.readline()
+            linhaDo2 = fita5.readline()
             if linhaDo2 != '':
                 linhaDo2 = int(linhaDo2)
-                arq2Fechado = 0
+                fita2Fechado = 0
             else:
-                arq2.close()
-                arq2Fechado = 2
+                fita2.close()
+                fita2Fechado = 2
                 linhaDo2 = 9000
             ####
-            linhaDo3 = arq23.readline()
+            linhaDo3 = fita6.readline()
             if linhaDo3 != '':
                 linhaDo3 = int(linhaDo3)
-                arq3Fechado = 0
+                fita3Fechado = 0
             else:
-                arq3.close()
-                arq3Fechado = 2
+                fita3.close()
+                fita3Fechado = 2
                 linhaDo3 = 9000
 
-            while arq1Fechado == 0 or arq2Fechado == 0 or arq3Fechado == 0:
-                if arq1Fechado == 0 and linhaDo1 < linhaDo2 and linhaDo1 < linhaDo3:
+            while fita1Fechado == 0 or fita2Fechado == 0 or fita3Fechado == 0:
+                if fita1Fechado == 0 and linhaDo1 < linhaDo2 and linhaDo1 < linhaDo3:
                     linhaDo1 = str(linhaDo1) + '\n'
                     arq.writelines(linhaDo1)
-                    linhaDo1 = arq21.readline()
+                    linhaDo1 = fita4.readline()
                     if linhaDo1 == '':
-                        arq1.close()
-                        arq1Fechado = 2
+                        fita1.close()
+                        fita1Fechado = 2
                         linhaDo1 = 999
                     if linhaDo1 == "-\n":
-                        arq1Fechado = 1
+                        fita1Fechado = 1
                         linhaDo1 = 999
                     else:
                         linhaDo1 = int(linhaDo1)
-                if arq2Fechado == 0 and linhaDo2 < linhaDo1 and linhaDo2 < linhaDo3:
+                if fita2Fechado == 0 and linhaDo2 < linhaDo1 and linhaDo2 < linhaDo3:
                     linhaDo2 = str(linhaDo2) + '\n'
                     arq.writelines(linhaDo2)
-                    linhaDo2 = arq22.readline()
+                    linhaDo2 = fita5.readline()
                     if linhaDo2 == '-\n':
                         linhaDo2 = 999
-                        arq2Fechado = 1
+                        fita2Fechado = 1
                     if linhaDo2 == '':
-                        arq2.close()
-                        arq2Fechado = 2
+                        fita2.close()
+                        fita2Fechado = 2
                         linhaDo2 = 999
                     else:
                         linhaDo2 = int(linhaDo2)
-                if arq3Fechado == 0 and linhaDo3 < linhaDo1 and linhaDo3 < linhaDo2:
+                if fita3Fechado == 0 and linhaDo3 < linhaDo1 and linhaDo3 < linhaDo2:
                     linhaDo3 = str(linhaDo3) + '\n'
                     arq.writelines(linhaDo3)
-                    linhaDo3 = arq23.readline()
+                    linhaDo3 = fita6.readline()
                     if linhaDo3 == "-\n":
                         linhaDo3 = 999
-                        arq3Fechado = 1
+                        fita3Fechado = 1
                     if linhaDo3 == '':
-                        arq3.close()
-                        arq3Fechado = 2
+                        fita3.close()
+                        fita3Fechado = 2
                         linhaDo3 = 999
                     else:
                         linhaDo3 = int(linhaDo3)
-            if arq1Fechado != 2 and arq2Fechado != 2 and arq3Fechado != 2:
+            if fita1Fechado != 2 and fita2Fechado != 2 and fita3Fechado != 2:
                 arq.writelines('-\n')
                 arq.close()
             if i == 2:
@@ -330,4 +330,4 @@ def Intercalacao(fitaEntrada, fitaSaida, numRegistros):
         passada += 1  # Incrementa +1  na passada
 
 
-intercalacaoBalanceada('entrada')
+IntercalacaoBalanceada('entrada')
