@@ -105,9 +105,9 @@ def Intercalacao(fitaEntrada, fitaSaida, numRegistros):
         fita2Fechado = 0
         fita3Fechado = 0
 
-        # arqFechado = 0 - A variavel percorre o arquivo
-        # arqFechado = 1 - A variavel encontrou um separador de blocos, entao ela tera que esperar as outras chegarem tambem para voltarem a ser 0
-        # arqFechado = 2 - A variavel chegou no final do arquivo
+        # fitaFechado = 0 - A variavel percorre o arquivo
+        # fitaFechado = 1 - A variavel encontrou um separador de blocos, entao ela tera que esperar as outras chegarem tambem para voltarem a ser 0
+        # fitaFechado = 2 - A variavel chegou no final do arquivo
 
         # LinhaDo1 - Variavel que percorre o arquivo 1 dos 3 a ser comparados
         # LinhaDo2 - Variavel que percorre o arquivo 2 dos 3 a ser comparados
