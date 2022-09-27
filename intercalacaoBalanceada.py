@@ -130,35 +130,29 @@ def Intercalacao(fitaEntrada, fitaSaida, numRegistros):
             else:
                 fita1.close()
                 fita1Fechado = 2
-                linhaDo1 = 9000  # LinhaDo1 recebe um valor muito alto para que nao seja comparado menor que nenhuma das outras linhas
+                linhaDo1 = 99999  # LinhaDo1 recebe um valor muito alto para que nao seja comparado menor que nenhuma das outras linhas
             #####
             # Le a linha do segundo arquivo
             linhaDo2 = fita2.readline()
-            # Tratamento caso a linha seja igual a um separador de blocos
             if linhaDo2 == '-\n':
                 linhaDo2 = fita2.readline()
-            # Se for igual a '' quer dizer que chegou no final do arquivo
             if linhaDo2 != '':
                 linhaDo2 = int(linhaDo2)
                 fita2Fechado = 0
             else:
                 fita2.close()
                 fita2Fechado = 2
-                linhaDo2 = 9000  # LinhaDo2 recebe um valor muito alto para que nao seja comparado menor que nenhuma das outras linhas
-            ####
-            # Le a linha do terceiro arquivo
+                linhaDo2 = 99999
             linhaDo3 = fita3.readline()
-            # Tratamento caso a linha seja igual a um separador de blocos
             if linhaDo3 == '-\n':
                 linhaDo3 = fita3.readline()
-            # Se for igual a '' quer dizer que chegou no final do arquivo
             if linhaDo3 != '':
                 linhaDo3 = int(linhaDo3)
                 fita3Fechado = 0
             else:
                 fita3.close()
                 fita3Fechado = 2
-                linhaDo3 = 9000  # LinhaDo3 recebe um valor muito alto para que nao seja comparado menor que nenhuma das outras linhas
+                linhaDo3 = 99999
 
             while fita1Fechado == 0 or fita2Fechado == 0 or fita3Fechado == 0:
                 # Se linhaDo1 for menor que linhaDo2 e linhaDo3:
@@ -167,18 +161,18 @@ def Intercalacao(fitaEntrada, fitaSaida, numRegistros):
                     linhaDo1 = str(linhaDo1) + '\n'
                     # Escreve a linha no final do arquivo
                     fita4.writelines(linhaDo1)
-                    linhaDo1 = fita1.readline()                          # Le outra linha
-                    if linhaDo1 == '':                                  # Se chegar no final do arquivo, nao abri-lo
+                    linhaDo1 = fita1.readline()
+                    if linhaDo1 == '':
                         fita1.close()
                         fita1Fechado = 2
-                        linhaDo1 = 999
-                    if linhaDo1 == "-\n":                               # Se chegar no final do bloco
+                        linhaDo1 = 99999
+                    if linhaDo1 == "-\n":
                         # ArqFechado = 1, para nao entrar mais nesse bloco
                         fita1Fechado = 1
                         # Atribui um valor alto a linha, para continuar as comparacoes
-                        linhaDo1 = 999
+                        linhaDo1 = 99999
                     else:
-                        # Se nao, converta para inteiro, para continuar as comparacoes
+                        # Converta para inteiro, para continuar as comparacoes
                         linhaDo1 = int(linhaDo1)
                 # Se linhaDo2 for menor que linhaDo1 e linhaDo3:
                 if fita2Fechado == 0 and linhaDo2 < linhaDo1 and linhaDo2 < linhaDo3:
@@ -186,14 +180,14 @@ def Intercalacao(fitaEntrada, fitaSaida, numRegistros):
                     linhaDo2 = str(linhaDo2) + '\n'
                     # Escreve a linha no final do arquivo
                     fita4.writelines(linhaDo2)
-                    linhaDo2 = fita2.readline()                          # Le outra linha
-                    if linhaDo2 == '':                                  # Se chegar no final do arquivo, nao abri-lo
+                    linhaDo2 = fita2.readline()
+                    if linhaDo2 == '':
                         fita2.close()
                         fita2Fechado = 2
-                        linhaDo2 = 999
-                    if linhaDo2 == '-\n':                               # Se chegar no final do bloco
+                        linhaDo2 = 99999
+                    if linhaDo2 == '-\n':
                         # Atribui um valor alto a linha, para continuar as comparacoes
-                        linhaDo2 = 999
+                        linhaDo2 = 99999
                         # ArqFechado = 1, para nao entrar mais nesse bloco
                         fita2Fechado = 1
                     else:
@@ -205,14 +199,14 @@ def Intercalacao(fitaEntrada, fitaSaida, numRegistros):
                     linhaDo3 = str(linhaDo3) + '\n'
                     # Escreve a linha no final do arquivo
                     fita4.writelines(linhaDo3)
-                    linhaDo3 = fita3.readline()                          # Le outra linha
-                    if linhaDo3 == '':                                  # Se chegar no final do arquivo, nao abri-lo
+                    linhaDo3 = fita3.readline()
+                    if linhaDo3 == '':
                         fita3.close()
                         fita3Fechado = 2
-                        linhaDo3 = 999
-                    if linhaDo3 == "-\n":                               # Se chegar no final do bloco
+                        linhaDo3 = 99999
+                    if linhaDo3 == "-\n":
                         # Atribui um valor alto a linha, para continuar as comparacoes
-                        linhaDo3 = 999
+                        linhaDo3 = 99999
                         # ArqFechado = 1, para nao entrar mais nesse bloco
                         fita3Fechado = 1
                     else:
@@ -286,10 +280,10 @@ def Intercalacao(fitaEntrada, fitaSaida, numRegistros):
                     if linhaDo1 == '':
                         fita1.close()
                         fita1Fechado = 2
-                        linhaDo1 = 999
+                        linhaDo1 = 99999
                     if linhaDo1 == "-\n":
                         fita1Fechado = 1
-                        linhaDo1 = 999
+                        linhaDo1 = 99999
                     else:
                         linhaDo1 = int(linhaDo1)
                 if fita2Fechado == 0 and linhaDo2 < linhaDo1 and linhaDo2 < linhaDo3:
@@ -297,12 +291,12 @@ def Intercalacao(fitaEntrada, fitaSaida, numRegistros):
                     arq.writelines(linhaDo2)
                     linhaDo2 = fita5.readline()
                     if linhaDo2 == '-\n':
-                        linhaDo2 = 999
+                        linhaDo2 = 99999
                         fita2Fechado = 1
                     if linhaDo2 == '':
                         fita2.close()
                         fita2Fechado = 2
-                        linhaDo2 = 999
+                        linhaDo2 = 99999
                     else:
                         linhaDo2 = int(linhaDo2)
                 if fita3Fechado == 0 and linhaDo3 < linhaDo1 and linhaDo3 < linhaDo2:
@@ -310,12 +304,12 @@ def Intercalacao(fitaEntrada, fitaSaida, numRegistros):
                     arq.writelines(linhaDo3)
                     linhaDo3 = fita6.readline()
                     if linhaDo3 == "-\n":
-                        linhaDo3 = 999
+                        linhaDo3 = 99999
                         fita3Fechado = 1
                     if linhaDo3 == '':
                         fita3.close()
                         fita3Fechado = 2
-                        linhaDo3 = 999
+                        linhaDo3 = 99999
                     else:
                         linhaDo3 = int(linhaDo3)
             if fita1Fechado != 2 and fita2Fechado != 2 and fita3Fechado != 2:
